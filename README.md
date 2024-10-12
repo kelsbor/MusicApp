@@ -1,2 +1,2 @@
-# CompSist
-Computer Systems Organization Website
+# MusicApp
+Web Application with some musical theory tools.
