@@ -6,10 +6,9 @@ What to do:
 - Organize Folders and Components
     - Components and utils
 - Implement Logic and components
-    - Chord Controls
-    - Chord Display
-    - Piano Keys
+    - Piano Keys and Display
+    - Chords Handling
+    - Scale Handling
     - Sound Player
-    - Negative Chords
-    - Negative Scales 
+    - Negative Chords and Scale Logic 
 - Styling and Responsiveness
