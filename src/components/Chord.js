@@ -1,6 +1,6 @@
 class Chord { 
     constructor(functionalName, chordQuality, key) { 
-        this.functionalName = {
+        this.functionalChords = {
             "I": [0,4,7],
             "bII": [1,5,8],
             "II": [2,6,9],
@@ -33,7 +33,7 @@ class Chord {
         this.functionalName = functionalName; 
         this.key = key; 
         this.chordQuality = chordQuality; 
-        this.selectedChord = this.functional_chords[this.functionalName]; 
+        this.selectedChord = this.functionalChords[this.functionalName]; 
     } 
  
     addQualities() { 
@@ -100,11 +100,17 @@ class Chord {
                 console.error('Unknown chord quality')
         } 
     } 
- 
-    transpose(octave) { 
+
+    transpose() { 
         const keyRoot = this.keys[this.key]; 
-        this.selectedChord = this.selectedChord.map(note => (note + keyRoot) % 12 + 12 * octave); 
-    } 
+        this.selectedChord = this.selectedChord.map(note => (note + keyRoot) % 12); 
+    }
+
+    mount() {
+        this.addQualities();
+        this.transpose();
+        return this.selectedChord
+    }
 } 
  
 export default Chord;
