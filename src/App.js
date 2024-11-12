@@ -1,17 +1,13 @@
-import './App.css';
-import Chord from './components/Chord.js';
-import Piano from './components/Piano.js' 
+import React from 'react';
+import Router from './router.js';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
+    console.log('Rendering Router Component')
     return (
-        <div>
-            {/* Render a two-octave piano with highlighted notes */}
-            <Piano notes={ new Chord('I', 'major', 'D').mount()} />
-            <Piano notes={[0,3,7]} />
-
-            {/* Render a default one-octave piano without highlighted notes */}
-            
-        </div>
+        <BrowserRouter>   
+            <Router/>
+        </BrowserRouter>
     );
 }
 
