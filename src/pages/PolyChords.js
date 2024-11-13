@@ -1,6 +1,6 @@
 import Chord from '../utils/Chord.js';
 import Piano from '../components/Piano.js' 
-
+import ChordControl from '../components/ChordControl.js';
 const HomePage = () =>{
     return (
         <>
@@ -24,9 +24,16 @@ const HomePage = () =>{
         </nav>
         <div className='container'>
             {/* Render a two-octave piano with highlighted notes */}
-            <div className='row'>
-                <Piano notes={ new Chord('I', 'major', 'D').mount()} />
-                <Piano notes={[0,3,7]} />
+            <div className='container'></div>
+            <div className='row no-gutters'>
+                <div className='col-md-6'>
+                    <Piano notes={ new Chord('I', 'major', 'D').mount()} />
+                    <ChordControl />
+                </div>
+                <div className='col-md-6'>
+                    <Piano notes={[0,3,7]} />
+                    <ChordControl />
+                </div>
             </div>
             {/* Render a default one-octave piano without highlighted notes */}
             

@@ -10,6 +10,7 @@ const Router= () => {
             <Route exact path="/" element={<HomePage />} />
             <Route path="/polychords" element={<PolyChords />} />
             <Route path="/negative_harmony" element={<NegativeHarm />} />
+            <Route path="*" element={<h1 className='text-center text-white p-5 bg-primary'>Page not found</h1>} />
         </Routes>
     );
 };
