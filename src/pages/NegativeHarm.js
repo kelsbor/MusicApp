@@ -11,13 +11,13 @@ const HomePage = () =>{
             <div class="container-fluid">
                 <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">HomePage</a>
+                    <a class="nav-link" href="#">HomePage</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/polychords">Polychords</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/negative_harmony">Negative Harmony</a>
+                    <a class="nav-link active" href="/negative_harmony">Negative Harmony</a>
                 </li>
                 </ul>
             </div>
