@@ -1,0 +1,11 @@
+.piano-left {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 20px;
+  }
+  
+  .piano-right {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 20px;
+  }

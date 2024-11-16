@@ -1,5 +1,5 @@
-import Chord from '../utils/Chord.js';
-import Piano from '../components/Piano.js' 
+//import Chord from '../utils/Chord.js';
+//import Piano from '../components/Piano.js' 
 
 const HomePage = () =>{
     return (
@@ -11,7 +11,7 @@ const HomePage = () =>{
             <div class="container-fluid">
                 <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">HomePage</a>
+                    <a class="nav-link" href="/">HomePage</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/polychords">Polychords</a>

@@ -1,7 +1,8 @@
-import Chord from '../utils/Chord.js';
-import Piano from '../components/Piano.js' 
-import ChordControl from '../components/ChordControl.js';
-const HomePage = () =>{
+import ChordPiano from '../components/ChordPiano.js';
+import '../styles/polychord.css'
+const PolyChords = () =>{
+
+
     return (
         <>
         <header className='p-5 bg-primary text-white text-center'>
@@ -22,24 +23,18 @@ const HomePage = () =>{
                 </ul>
             </div>
         </nav>
-        <div className='container'>
-            {/* Render a two-octave piano with highlighted notes */}
-            <div className='container'></div>
-            <div className='row no-gutters'>
-                <div className='col-md-6'>
-                    <Piano notes={ new Chord('I', 'major', 'D').mount()} />
-                    <ChordControl />
+        <div className='container m-5 p-5'>
+            <div className='row'>
+                <div className='col-6 d-flex'>
+                    <ChordPiano className='piano-left'/>
                 </div>
-                <div className='col-md-6'>
-                    <Piano notes={[0,3,7]} />
-                    <ChordControl />
+                <div className='col-6 d-flex'>
+                    <ChordPiano className='piano-right'/>
                 </div>
             </div>
-            {/* Render a default one-octave piano without highlighted notes */}
-            
         </div>
         </>
     );
 }
 
-export default HomePage
+export default PolyChords

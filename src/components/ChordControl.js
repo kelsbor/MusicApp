@@ -1,17 +1,12 @@
-import { useState } from "react";
-
-const ChordControl = () => {
-    const [chord, setChord] = useState('I');
-    const [quality, setQuality] = useState('major');
-    const [key, setKey] = useState('C');
-
+import React, { memo } from "react";
+const ChordControl = memo(({chord, handleChange}) => {
     return (
         <div className="container p-5">
             <h2>Chord Control</h2>
-            <p>Chord: {chord}</p>
-            <p>Quality: {quality}</p>
-            <p>Key: {key}</p>
-            <select className="form-select">
+            <p>Chord: {chord.chord}</p>
+            <p>Quality: {chord.quality}</p>
+            <p>Key: {chord.key}</p>
+            <select className="form-select" name='chord' onChange={handleChange}>
                 <option value="I">I</option>
                 <option value="bII">bII</option>
                 <option value="II">II</option>
@@ -25,11 +20,11 @@ const ChordControl = () => {
                 <option value="bVII">bVII</option>
                 <option value="VII">VII</option>
             </select>
-            <select className="form-select">
+            <select className="form-select" name="quality" onChange={handleChange}>
                 <option value="major">major</option>
                 <option value="minor">minor</option>
             </select>
-            <select className="form-select">
+            <select className="form-select" name="key" onChange={handleChange}>
                 <option value="C">C</option>
                 <option value="C#">C#</option>
                 <option value="D">D</option>
@@ -45,6 +40,6 @@ const ChordControl = () => {
             </select>
         </div>
     );
-}
+})
 
 export default ChordControl

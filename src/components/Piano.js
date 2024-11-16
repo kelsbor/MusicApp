@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo} from 'react';
+import React, { useState, useEffect, useMemo, useCallback} from 'react';
 
 const Piano = ({ notes = [] }) => {
     console.log('Received notes:', notes);
@@ -10,7 +10,7 @@ const Piano = ({ notes = [] }) => {
     }, [notes]);
 
 
-    const getKeyFill = (noteIndex) => {
+    const getKeyFill = useCallback((noteIndex) => {
         console.log('Checking note index:', noteIndex);
         console.log('Highlighted notes:', highlightedNotes);
         
@@ -23,7 +23,7 @@ const Piano = ({ notes = [] }) => {
         return (noteIndex % 12 === 1 || noteIndex % 12 === 3 || 
                 noteIndex % 12 === 6 || noteIndex % 12 === 8 || 
                 noteIndex % 12 === 10) ? 'black' : 'white';
-    };
+    }, [highlightedNotes]);
 
     const keyFills = useMemo(() => {
         const fills = [];
@@ -31,7 +31,7 @@ const Piano = ({ notes = [] }) => {
           fills.push(getKeyFill(i));
         }
         return fills;
-      }, [highlightedNotes]);
+      }, [getKeyFill]);
 
     
     return (
