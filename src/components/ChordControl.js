@@ -21,8 +21,18 @@ const ChordControl = memo(({chord, handleChange}) => {
                 <option value="VII">VII</option>
             </select>
             <select className="form-select" name="quality" onChange={handleChange}>
-                <option value="major">major</option>
-                <option value="minor">minor</option>
+                <option value="major">Major</option>
+                <option value="minor">Minor</option>
+                <option value="diminished">Diminished</option>
+                <option value="augmented">Augmented</option>
+                <option value="major7">Major7</option>
+                <option value="major7aug">Major7+</option>
+                <option value="minor7">Minor7</option>
+                <option value="minormaj7">Minor(Maj7)</option>
+                <option value="dom7">Dominant7</option>
+                <option value="dom7aug">Dominant7+</option>
+                <option value="half-diminished">Half-Diminished</option>
+                <option value="fully-diminished">Fully-Diminished</option>
             </select>
             <select className="form-select" name="key" onChange={handleChange}>
                 <option value="C">C</option>

@@ -1,8 +1,6 @@
 import ChordPiano from '../components/ChordPiano.js';
 import '../styles/polychord.css'
 const PolyChords = () =>{
-
-
     return (
         <>
         <header className='p-5 bg-primary text-white text-center'>
@@ -27,9 +25,6 @@ const PolyChords = () =>{
             <div className='row'>
                 <div className='col-6 d-flex'>
                     <ChordPiano className='piano-left'/>
-                </div>
-                <div className='col-6 d-flex'>
-                    <ChordPiano className='piano-right'/>
                 </div>
             </div>
         </div>

@@ -1,38 +1,29 @@
-import React, { useState, useEffect, useMemo, useCallback} from 'react';
+import React, { useState, useEffect, useMemo} from 'react';
 
 const Piano = ({ notes = [] }) => {
-    console.log('Received notes:', notes);
     const [highlightedNotes, setHighlightedNotes] = useState(notes);
 
     useEffect(() => {
-        // console.log('Received notes:', notes);
         setHighlightedNotes(notes);
     }, [notes]);
-
-
-    const getKeyFill = useCallback((noteIndex) => {
-        console.log('Checking note index:', noteIndex);
-        console.log('Highlighted notes:', highlightedNotes);
-        
-        if (highlightedNotes && highlightedNotes.includes(noteIndex)) {
-            console.log(`Highlighting note: ${noteIndex}`);
-            return 'blue'; // Highlighted color
+    
+    const getKeyColor = (noteIndex, highlightedNotes) => {
+        if (highlightedNotes.includes(noteIndex)) {
+          return 'blue';
         }
-        
-        // Determine the default color based on whether the note is black or white
-        return (noteIndex % 12 === 1 || noteIndex % 12 === 3 || 
-                noteIndex % 12 === 6 || noteIndex % 12 === 8 || 
-                noteIndex % 12 === 10) ? 'black' : 'white';
-    }, [highlightedNotes]);
-
+        const keyColorMap = {
+          1: 'black',
+          3: 'black',
+          6: 'black',
+          8: 'black',
+          10: 'black',
+        };
+        return keyColorMap[noteIndex % 12] || 'white';
+    };
+    
     const keyFills = useMemo(() => {
-        const fills = [];
-        for (let i = 0; i < 12; i++) {
-          fills.push(getKeyFill(i));
-        }
-        return fills;
-      }, [getKeyFill]);
-
+        return Array(12).fill(0).map((_, index) => getKeyColor(index, highlightedNotes));
+    }, [highlightedNotes]);
     
     return (
         <svg width="560" height="120" xmlns="http://www.w3.org/2000/svg">
