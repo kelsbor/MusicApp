@@ -1,12 +1,42 @@
-import React, { memo } from "react";
-const ChordControl = memo(({chord, handleChange}) => {
+import { useState } from "react";
+import Chord from "../utils/Chord";
+const ChordScaleSelector = ({onClose, onSelect}) => {
+    const [chord, setChord] = useState({
+        chord: "I",
+        quality: "major",
+        key: "C"
+    })
+
+    const [scale, setScale] = useState({
+        fundamental: "C",
+        scale: "Ionian"
+    })
+
+    const [mode, setMode] = useState({
+        chord: true,
+        scale: false
+    })
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setChord((prevChord) => ({
+            ...prevChord,
+            [name]: value
+        }))
+    }
+    
+    const handleSubmit = () => {
+        const notes = new Chord(chord.chord, chord.quality, chord.key).mount()
+        console.log('Generated notes:', notes);
+        onSelect(notes);
+    }
     return (
         <div className="container p-5">
             <h2>Chord Control</h2>
             <p>Chord: {chord.chord}</p>
             <p>Quality: {chord.quality}</p>
             <p>Key: {chord.key}</p>
-            <select className="form-select" name='chord' onChange={handleChange}>
+            <select className="form-select" name='chord' value={chord.chord} onChange={handleChange}>
                 <option value="I">I</option>
                 <option value="bII">bII</option>
                 <option value="II">II</option>
@@ -20,7 +50,7 @@ const ChordControl = memo(({chord, handleChange}) => {
                 <option value="bVII">bVII</option>
                 <option value="VII">VII</option>
             </select>
-            <select className="form-select" name="quality" onChange={handleChange}>
+            <select className="form-select" name="quality" value={chord.quality} onChange={handleChange}>
                 <option value="major">Major</option>
                 <option value="minor">Minor</option>
                 <option value="diminished">Diminished</option>
@@ -34,7 +64,7 @@ const ChordControl = memo(({chord, handleChange}) => {
                 <option value="half-diminished">Half-Diminished</option>
                 <option value="fully-diminished">Fully-Diminished</option>
             </select>
-            <select className="form-select" name="key" onChange={handleChange}>
+            <select className="form-select" name="key" value={chord.key} onChange={handleChange}>
                 <option value="C">C</option>
                 <option value="C#">C#</option>
                 <option value="D">D</option>
@@ -48,8 +78,10 @@ const ChordControl = memo(({chord, handleChange}) => {
                 <option value="A#">A#</option>
                 <option value="B">B</option>
             </select>
+            <button type="submit" onClick={handleSubmit}>Generate</button>
+            <button type="button" onClick={onClose}>Close</button>
         </div>
     );
-})
+}
 
-export default ChordControl
+export default ChordScaleSelector

@@ -1,7 +1,7 @@
 //import Chord from '../utils/Chord.js';
 //import Piano from '../components/Piano.js' 
 
-const HomePage = () =>{
+const NegativeHarm = () =>{
     return (
         <>
         <header className='p-5 bg-primary text-white text-center'>
@@ -26,4 +26,4 @@ const HomePage = () =>{
     );
 }
 
-export default HomePage
+export default NegativeHarm

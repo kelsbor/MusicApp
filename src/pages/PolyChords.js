@@ -1,30 +1,30 @@
-import ChordPiano from '../components/ChordPiano.js';
-import '../styles/polychord.css'
+import AddPiano from '../components/AddPiano.js';
+
 const PolyChords = () =>{
     return (
         <>
         <header className='p-5 bg-primary text-white text-center'>
             <h1>Music App</h1>
         </header>
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <div class="container-fluid">
-                <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">HomePage</a>
+        <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div className="container-fluid">
+                <ul className="navbar-nav">
+                <li className="nav-item">
+                    <a className="nav-link" href="/">HomePage</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/polychords">Polychords</a>
+                <li className="nav-item">
+                    <a className="nav-link active" href="/polychords">Polychords</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/negative_harmony">Negative Harmony</a>
+                <li className="nav-item">
+                    <a className="nav-link" href="/negative_harmony">Negative Harmony</a>
                 </li>
                 </ul>
             </div>
         </nav>
         <div className='container m-5 p-5'>
             <div className='row'>
-                <div className='col-6 d-flex'>
-                    <ChordPiano className='piano-left'/>
+                <div className='col-12 border border-primary rounded'>
+                    <AddPiano />
                 </div>
             </div>
         </div>

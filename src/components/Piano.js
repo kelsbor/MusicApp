@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useMemo} from 'react';
-
+import React, { useState, useMemo} from 'react';
+import ChordScaleSelector from './ChordScaleSelector';
 const Piano = ({ notes = [] }) => {
     const [highlightedNotes, setHighlightedNotes] = useState(notes);
+    const [showPopover, setShowPopover] = useState(false);
 
-    useEffect(() => {
+    const handleSelectNotes = (notes) => {
+        console.log('Received notes:', notes);
         setHighlightedNotes(notes);
-    }, [notes]);
+    };
     
     const getKeyColor = (noteIndex, highlightedNotes) => {
         if (highlightedNotes.includes(noteIndex)) {
@@ -25,8 +27,12 @@ const Piano = ({ notes = [] }) => {
         return Array(12).fill(0).map((_, index) => getKeyColor(index, highlightedNotes));
     }, [highlightedNotes]);
     
+    const handlePianoClick = () => {
+        setShowPopover(true)
+    }
     return (
-        <svg width="560" height="120" xmlns="http://www.w3.org/2000/svg">
+        <>
+            <svg width="560" height="120" xmlns="http://www.w3.org/2000/svg" onClick={handlePianoClick}>
             {/* White keys */}
             <rect id="C" x="0" y="0" width="40" height="120" fill={keyFills[0]} stroke="black" />
             <rect id="D" x="40" y="0" width="40" height="120" fill={keyFills[2]} stroke="black" />
@@ -43,6 +49,13 @@ const Piano = ({ notes = [] }) => {
             <rect id="G#" x="185" y="0" width="30" height="80" fill={keyFills[8]} />
             <rect id="A#" x="225" y="0" width="30" height="80" fill={keyFills[10]} />
         </svg>
+            {showPopover && (
+            <ChordScaleSelector
+              onClose={() => setShowPopover(false)}
+              onSelect={handleSelectNotes}
+            />
+          )}
+        </>
     );
 };
 
