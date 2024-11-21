@@ -1,14 +1,16 @@
-# MusicApp
+# BrickNotes
 Web Application with some musical theory tools.
 
 What to do:
-- Create a React Project
-- Organize Folders and Components
-    - Components and utils
+- Create a React Project (X)
+- Organize Folders and Components (X)
+    - Components and utils (X)
 - Implement Logic and components
-    - Piano Keys and Display
-    - Chords Handling
-    - Scale Handling
+    - Piano Keys and Display (X)
+    - Chords Handling (X)
+    - Scale Handling (X)
     - Sound Player
     - Negative Chords and Scale Logic 
-- Styling and Responsiveness
+- Styling and Responsiveness (--)
+
+- Music Tool based on piano containers.
