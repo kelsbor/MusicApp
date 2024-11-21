@@ -2,13 +2,13 @@ class Scale {
     constructor(scale, key, options) {
         this.scales = {
             // Major Scales
-            "Ionian": [0,2,4,5,7,9,11],
-            "Dorian": [0,2,3,5,7,9,10],
-            "Phrygian": [0,1,3,5,7,8,10],
-            "Lydian": [0,2,4,6,7,9,11],
-            "Mixolydian": [0,2,4,5,7,9,10],
-            "Aeolian": [0,2,3,5,7,9,11],
-            "Locrian": [0,1,3,5,6,8,10]
+            "ionian": [0,2,4,5,7,9,11],
+            "dorian": [0,2,3,5,7,9,10],
+            "phrygian": [0,1,3,5,7,8,10],
+            "lydian": [0,2,4,6,7,9,11],
+            "mixolydian": [0,2,4,5,7,9,10],
+            "aeolian": [0,2,3,5,7,9,11],
+            "locrian": [0,1,3,5,6,8,10]
             // Harmonic Minor Scales
             
 
@@ -41,6 +41,9 @@ class Scale {
         
     }
     transpose() {
-        this.selectedScale = this.selectedScale.map(note => (note + keyRoot) % 12);
+        this.selectedScale = this.selectedScale.map(note => (note + this.keys[this.key]) % 12);
+        return this.selectedScale
     };
 }
+
+export default Scale
