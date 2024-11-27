@@ -1,5 +1,5 @@
 import React, { useState, useMemo} from 'react';
-import ChordScaleSelector from './ChordScaleSelector';
+import Selector from './Selector';
 const Piano = ({ notes = [] }) => {
     const [highlightedNotes, setHighlightedNotes] = useState(notes);
     const [showPopover, setShowPopover] = useState(false);
@@ -50,7 +50,7 @@ const Piano = ({ notes = [] }) => {
             <rect id="A#" x="225" y="0" width="30" height="80" fill={keyFills[10]} />
         </svg>
             {showPopover && (
-            <ChordScaleSelector
+            <Selector
               onClose={() => setShowPopover(false)}
               onSelect={handleSelectNotes}
             />
