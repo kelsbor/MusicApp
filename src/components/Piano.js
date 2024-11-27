@@ -53,6 +53,7 @@ const Piano = ({ notes = [] }) => {
             <Selector
               onClose={() => setShowPopover(false)}
               onSelect={handleSelectNotes}
+              highlightedNotes={highlightedNotes}
             />
           )}
         </>

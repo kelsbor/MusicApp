@@ -1,6 +1,5 @@
-import AddPiano from '../components/AddPiano.js';
+import PianoContainer from '../components/PianoContainer.js';
 import logo from '../images/logo.png'
-
 const WorkSpace = () =>{
     return (
         <>
@@ -34,7 +33,7 @@ const WorkSpace = () =>{
         <div className='container m-5 p-5'>
             <div className='row'>
                 <div className='col-12 border border-primary rounded'>
-                    <AddPiano />
+                    <PianoContainer />
                 </div>
             </div>
         </div>

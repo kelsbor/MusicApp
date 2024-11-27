@@ -2,7 +2,7 @@ import Piano from './Piano';
 import '../styles/Piano.css';
 import React, { useState } from 'react';
 
-const AddPiano = () => {
+const PianoContainer = () => {
   const [pianos, setPianos] = useState([
     { id: 1, occupied: false },
     { id: 2, occupied: false }
@@ -37,10 +37,10 @@ const AddPiano = () => {
           {piano.occupied ? (
             <Piano />
           ) : (
-            <button onClick={() => handleAddPiano(piano.id)}>Add Piano</button>
+            <button className='btn btn-primary' onClick={() => handleAddPiano(piano.id)}>Add Piano</button>
           )}
           {piano.occupied && (
-            <button onClick={() => handleRemovePiano(piano.id)}>Remove</button>
+            <button className='btn btn-primary' onClick={() => handleRemovePiano(piano.id)}>Remove</button>
           )}
         </div>
       ))}
@@ -48,4 +48,4 @@ const AddPiano = () => {
   );
 };
 
-export default AddPiano;
+export default PianoContainer;

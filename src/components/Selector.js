@@ -1,11 +1,12 @@
 import { useState } from "react";
 import Chord from "../utils/Chord";
 import Scale from "../utils/Scale";
+import Negative from "../utils/Negative";
 import ScaleTab from "./tabs/ScaleTab";
 import ChordTab from "./tabs/ChordTab";
 import NegativeTab from "./tabs/NegativeTab";
 
-const Selector = ({onClose, onSelect}) => {
+const Selector = ({onClose, onSelect, highlightedNotes}) => {
     const [chord, setChord] = useState({
         chord: "I",
         quality: "major",
@@ -16,6 +17,11 @@ const Selector = ({onClose, onSelect}) => {
         fundamental: "C",
         scale: "ionian"
     })
+
+    const [axis, setAxis] = useState({
+        axis: 3.5,
+        negative: false
+    });
 
     const [tab, setTab] = useState('chord')
 
@@ -42,12 +48,17 @@ const Selector = ({onClose, onSelect}) => {
             const notes = new Chord(chord.chord, chord.quality, chord.key).mount()
             console.log('Generated notes:', notes);
             onSelect(notes);
-        } else {
+        } 
+        if (tab === 'scale') {
             const notes = new Scale(scale.scale, scale.fundamental).transpose()
             console.log(notes)
             onSelect(notes)    
         }
-        
+        if (tab === 'negative') {
+            const notes = new Negative(highlightedNotes, axis.axis).calculateNegative()
+            console.log(notes)
+            onSelect(notes)
+        }
     } 
 
     const handleTabChange = (tab) => {
@@ -87,7 +98,11 @@ const Selector = ({onClose, onSelect}) => {
             }
 
             {tab === 'negative' && 
-                <NegativeTab />
+                <NegativeTab
+                    axis={axis}
+                    onSubmit={handleSubmit}
+                    onClose={onClose}
+                />
             }
 
         </div>

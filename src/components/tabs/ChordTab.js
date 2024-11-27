@@ -47,8 +47,8 @@ const ChordTab = ({onChange, onSubmit, chord, onClose}) => {
                     <option value="A#">A#</option>
                     <option value="B">B</option>
                 </select>
-                <button type="submit" onClick={onSubmit}>Generate</button>
-                <button type="button" onClick={onClose}>Close</button>
+                <button className='btn btn-primary' type="submit" onClick={onSubmit}>Generate</button>
+                <button className='btn btn-primary' type="button" onClick={onClose}>Close</button>
         </>
     )
 }
