@@ -58,9 +58,9 @@ const HomePage = () =>{
                     <button className="btn btn-dark border border-rounded m-4">Get Started!</button>
                 </a>
         </div>
-        <div className='container m-5 p-5'>
+        <div className='container m-5 p-5' >
             <div className='row'>
-                <div className='col-12 border border-primary rounded'>
+                <div className='col-12 border border-dark rounded'>
                     <h1 className='text-center'>Features</h1>
                     <div className='row'>
                         <div className='col-6'>

@@ -33,16 +33,23 @@ const Selector = ({onClose, onSelect, highlightedNotes}) => {
                 [name]: value
             }))
         }
-        else {
+        if (tab === 'scale') {
             console.log(scale)
             setScale((prevScale) => ({
                 ...prevScale,
                 [name]: value
             }))
-        }
-        
+        } 
     }
     
+    const axisChange = (axisValue, note1, note2) => {
+        console.log(axisValue)
+        setAxis({
+            axis: axisValue,
+            axisName: `${note1}/${note2}`,
+            negative: false
+        })
+    }
     const handleSubmit = () => {
         if (tab === 'chord') {
             const notes = new Chord(chord.chord, chord.quality, chord.key).mount()
@@ -99,9 +106,10 @@ const Selector = ({onClose, onSelect, highlightedNotes}) => {
 
             {tab === 'negative' && 
                 <NegativeTab
-                    axis={axis}
+                    onChange={axisChange}
                     onSubmit={handleSubmit}
                     onClose={onClose}
+                    axis={axis}
                 />
             }
 
