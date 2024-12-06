@@ -42,11 +42,12 @@ const Selector = ({onClose, onSelect, highlightedNotes}) => {
         } 
     }
     
-    const axisChange = (axisValue, note1, note2) => {
+    const axisChange = (axisValue, note1, note2, tonal1, tonal2) => {
         console.log(axisValue)
         setAxis({
             axis: axisValue,
             axisName: `${note1}/${note2}`,
+            axisTonal: `${tonal1}/${tonal2}`,
             negative: false
         })
     }

@@ -1,9 +1,10 @@
 import React, { useState, useMemo} from 'react';
 import Selector from './Selector';
+import AudioPlayer from '../utils/AudioPlayer';
 const Piano = ({ notes = [] }) => {
     const [highlightedNotes, setHighlightedNotes] = useState(notes);
     const [showPopover, setShowPopover] = useState(false);
-
+    const [playMode, setPlayMode] = useState(true); // true for chord, false for arpeggio
     const handleSelectNotes = (notes) => {
         console.log('Received notes:', notes);
         setHighlightedNotes(notes);
@@ -32,6 +33,7 @@ const Piano = ({ notes = [] }) => {
     }
     return (
         <>
+            <AudioPlayer notes={highlightedNotes} playmode={playMode}/>
             <svg width="560" height="120" xmlns="http://www.w3.org/2000/svg" onClick={handlePianoClick}>
             {/* White keys */}
             <rect id="C" x="0" y="0" width="40" height="120" fill={keyFills[0]} stroke="black" />

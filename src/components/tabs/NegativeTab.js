@@ -5,7 +5,7 @@ const NegativeTab = ({axis,onChange,onSubmit,onClose}) => {
         <AxisSelector onSelectAxis={onChange} />
         <h2>Negative Control</h2>
         <p>Axis: {axis.axisName}</p>
-        <p>Tune: {axis.axis}</p>
+        <p>Tune: {axis.axisTonal}</p>
         <p>State: {axis.negative ? "Negative" : "Normal"}</p>
 
       <button className="btn btn-primary" onClick={onSubmit}>Submit</button>

@@ -10,13 +10,29 @@ const AxisSelector = ({ onSelectAxis, showTonalContext = true }) => {
     const centerY = 200;
     const noteOffset = 20; // Distance of notes from the circle
 
-    const [selectedAxis, setSelectedAxis] = useState();
+    const [selectedAxis, setSelectedAxis] = useState(null);
 
     const handleAxisClick = (note1Index, note2Index, midAngle) => {
-        setSelectedAxis({ note1: notes[note1Index], note2: notes[note2Index], midAngle });
+        // Calculate tonal context notes
+        const tonalContextNote1 = notes[(note2Index + 8) % 12]; // Opposite note1
+        const tonalContextNote2 = notes[(note1Index + 4) % 12]; // Opposite note2
+
+        setSelectedAxis({
+            note1: notes[note1Index],
+            note2: notes[note2Index],
+            tonalContextNotes: [tonalContextNote1, tonalContextNote2],
+            midAngle,
+        });
 
         const axisValue = (note1Index + 0.5) % 12; // Calculate axis value (0.5 to 11.5)
-        onSelectAxis(axisValue, notes[note1Index], notes[note2Index]); // Send the axis value to the parent component
+        console.log(note1Index,note2Index,tonalContextNote1,tonalContextNote2)
+        onSelectAxis(
+            axisValue,
+            notes[note1Index],
+            notes[note2Index],
+            tonalContextNote1,
+            tonalContextNote2
+        );
     };
 
     // Calculate Note Position
@@ -29,6 +45,7 @@ const AxisSelector = ({ onSelectAxis, showTonalContext = true }) => {
 
     // Calculate Axis Line (Diameter)
     const getAxisLine = (midAngle) => {
+        // Points on the circle boundary
         const startX = centerX + radius * Math.cos(midAngle);
         const startY = centerY + radius * Math.sin(midAngle);
         const endX = centerX + radius * Math.cos(midAngle + Math.PI);
@@ -37,7 +54,6 @@ const AxisSelector = ({ onSelectAxis, showTonalContext = true }) => {
         return { startX, startY, endX, endY };
     };
 
-    // Calculate Perpendicular Line
     const getLineCoordinates = (angle, length) => {
         const x1 = centerX + length * Math.cos(angle);
         const y1 = centerY + length * Math.sin(angle);
@@ -54,6 +70,11 @@ const AxisSelector = ({ onSelectAxis, showTonalContext = true }) => {
             {/* Place Notes */}
             {notes.map((note, index) => {
                 const { x, y } = getNotePosition(index);
+
+                // Highlight tonal context notes in red
+                const isTonalContext =
+                    selectedAxis?.tonalContextNotes?.includes(note);
+
                 return (
                     <text
                         key={note}
@@ -62,11 +83,14 @@ const AxisSelector = ({ onSelectAxis, showTonalContext = true }) => {
                         textAnchor="middle"
                         dominantBaseline="middle"
                         alignmentBaseline="middle"
-                        fontSize="16" // Increased font size
+                        fontSize="18"
                         fontWeight="bold"
                         fill={
-                            selectedAxis &&
-                            (selectedAxis.note1 === note || selectedAxis.note2 === note)
+                            isTonalContext
+                                ? "red"
+                                : selectedAxis &&
+                                  (selectedAxis.note1 === note ||
+                                      selectedAxis.note2 === note)
                                 ? "blue"
                                 : "black"
                         }
@@ -81,10 +105,8 @@ const AxisSelector = ({ onSelectAxis, showTonalContext = true }) => {
                 const { x: x1, y: y1, angle: angle1 } = getNotePosition(index);
                 const { x: x2, y: y2, angle: angle2 } = getNotePosition((index + 1) % 12);
 
-                // Midpoint angle for the axis
-                const midAngle = (angle1 + angle2) / 2;
+                const midAngle = (angle1 + angle2) / 2; // Midpoint angle for the axis
 
-                // Calculate the axis line (true diameter)
                 const { startX, startY, endX, endY } = getAxisLine(midAngle);
 
                 return (
@@ -93,17 +115,15 @@ const AxisSelector = ({ onSelectAxis, showTonalContext = true }) => {
                         <circle
                             cx={(x1 + x2) / 2}
                             cy={(y1 + y2) / 2}
-                            r={15} // Enlarged selection area
+                            r={15}
                             fill="transparent"
-                            onClick={() =>
-                                handleAxisClick(index, (index + 1) % 12, midAngle)
-                            }
+                            onClick={() => handleAxisClick(index, (index + 1) % 12, midAngle)}
                             style={{ cursor: "pointer" }}
                         />
 
                         {/* Draw the selected axis */}
                         {selectedAxis &&
-                            selectedAxis.note1 === notes[index] &&
+                            selectedAxis.note1 === note &&
                             selectedAxis.note2 === notes[(index + 1) % 12] && (
                                 <line
                                     x1={startX}
@@ -114,20 +134,23 @@ const AxisSelector = ({ onSelectAxis, showTonalContext = true }) => {
                                     strokeWidth="2"
                                 />
                             )}
+
                         {/* Tonal Context Axis */}
                         {selectedAxis && showTonalContext && (() => {
                             const { midAngle } = selectedAxis;
-                            const perpendicularAngle = midAngle + Math.PI / 2; // Perpendicular angle
+                            const perpendicularAngle = midAngle + Math.PI / 2;
                             const { x1, y1, x2, y2 } = getLineCoordinates(perpendicularAngle, radius);
-                            return <line 
-                                x1={x1}
-                                y1={y1} 
-                                x2={x2} 
-                                y2={y2} 
-                                stroke="red" 
-                                strokeWidth="2"
-                                strokeDasharray="5,5"     
-                            />;
+                            return (
+                                <line
+                                    x1={x1}
+                                    y1={y1}
+                                    x2={x2}
+                                    y2={y2}
+                                    stroke="red"
+                                    strokeWidth="2"
+                                    strokeDasharray="5,5"
+                                />
+                            );
                         })()}
                     </g>
                 );

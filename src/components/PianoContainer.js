@@ -31,6 +31,7 @@ const PianoContainer = () => {
   };
 
   return (
+    <>
     <div className="grid-container">
       {pianos.map((piano) => (
         <div key={piano.id} className="grid-item">
@@ -45,6 +46,7 @@ const PianoContainer = () => {
         </div>
       ))}
     </div>
+    </>
   );
 };
 
