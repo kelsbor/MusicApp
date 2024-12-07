@@ -1,4 +1,4 @@
-const ScaleTab =({scale, onChange, onClick, onSubmit}) => {
+const ScaleTab =({scale, onChange, onSubmit}) => {
     return (
         <>
         <h2>Scale Control</h2>
@@ -37,7 +37,6 @@ const ScaleTab =({scale, onChange, onClick, onSubmit}) => {
                 <option value="locrian">Locrian</option>
             </select>
             <button className='btn btn-primary' type="submit" onClick={onSubmit}>Generate</button>
-            <button className='btn btn-primary' type="button" onClick={onClick}>Close</button>
         </>
     )    
 }

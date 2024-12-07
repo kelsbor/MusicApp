@@ -29,11 +29,10 @@ const Piano = ({ notes = [] }) => {
     }, [highlightedNotes]);
     
     const handlePianoClick = () => {
-        setShowPopover(true)
+        (showPopover) ? setShowPopover(false) : setShowPopover(true)
     }
     return (
         <>
-            <AudioPlayer notes={highlightedNotes} playmode={playMode}/>
             <svg width="560" height="120" xmlns="http://www.w3.org/2000/svg" onClick={handlePianoClick}>
             {/* White keys */}
             <rect id="C" x="0" y="0" width="40" height="120" fill={keyFills[0]} stroke="black" />
@@ -58,6 +57,7 @@ const Piano = ({ notes = [] }) => {
               highlightedNotes={highlightedNotes}
             />
           )}
+        <AudioPlayer notes={highlightedNotes} playmode={playMode}/>
         </>
     );
 };

@@ -1,4 +1,5 @@
 import PianoContainer from '../components/PianoContainer.js';
+import AddContainer from '../components/AddContainer.js';
 import logo from '../images/logo.png'
 const WorkSpace = () =>{
     return (
@@ -30,9 +31,10 @@ const WorkSpace = () =>{
             </div>
             </nav>
         </header>
+        <AddContainer />
         <div className='container m-5 p-5'>
             <div className='row'>
-                <div className='col-12 border border-primary rounded'>
+                <div className='col-12 border border-primary'>
                     <PianoContainer />
                 </div>
             </div>

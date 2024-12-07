@@ -6,7 +6,7 @@ import ScaleTab from "./tabs/ScaleTab";
 import ChordTab from "./tabs/ChordTab";
 import NegativeTab from "./tabs/NegativeTab";
 
-const Selector = ({onClose, onSelect, highlightedNotes}) => {
+const Selector = ({onSelect, highlightedNotes}) => {
     const [chord, setChord] = useState({
         chord: "I",
         quality: "major",
@@ -91,7 +91,6 @@ const Selector = ({onClose, onSelect, highlightedNotes}) => {
                 <ChordTab 
                     onChange={handleChange}
                     onSubmit={handleSubmit}
-                    onClose={onClose}
                     chord={chord}
                 />
             }
@@ -100,7 +99,6 @@ const Selector = ({onClose, onSelect, highlightedNotes}) => {
                 <ScaleTab 
                     onChange={handleChange}
                     onSubmit={handleSubmit}
-                    onClose={onClose}
                     scale={scale}
                 />
             }
@@ -109,7 +107,6 @@ const Selector = ({onClose, onSelect, highlightedNotes}) => {
                 <NegativeTab
                     onChange={axisChange}
                     onSubmit={handleSubmit}
-                    onClose={onClose}
                     axis={axis}
                 />
             }

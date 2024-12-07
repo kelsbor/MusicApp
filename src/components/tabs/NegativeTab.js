@@ -1,5 +1,5 @@
 import AxisSelector from "./AxisSelector"
-const NegativeTab = ({axis,onChange,onSubmit,onClose}) => {
+const NegativeTab = ({axis,onChange,onSubmit}) => {
     return (
       <>
         <AxisSelector onSelectAxis={onChange} />
@@ -9,7 +9,6 @@ const NegativeTab = ({axis,onChange,onSubmit,onClose}) => {
         <p>State: {axis.negative ? "Negative" : "Normal"}</p>
 
       <button className="btn btn-primary" onClick={onSubmit}>Submit</button>
-      <button className="btn btn-primary" onClick={onClose}>Close</button>
       </>
     )
 }   
