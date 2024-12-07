@@ -1,7 +1,8 @@
-import React, { useState, useMemo} from 'react';
+import React, { useState, useMemo, forwardRef, useImperativeHandle } from 'react';
 import Selector from './Selector';
 import AudioPlayer from '../utils/AudioPlayer';
-const Piano = ({ notes = [] }) => {
+
+const Piano = forwardRef(({ notes = [] }, ref) => {
     const [highlightedNotes, setHighlightedNotes] = useState(notes);
     const [showPopover, setShowPopover] = useState(false);
     const [playMode, setPlayMode] = useState(true); // true for chord, false for arpeggio
@@ -29,11 +30,18 @@ const Piano = ({ notes = [] }) => {
     }, [highlightedNotes]);
     
     const handlePianoClick = () => {
-        (showPopover) ? setShowPopover(false) : setShowPopover(true)
+      setShowPopover((prev) => !prev);
     }
+
+     // Expose play functionality to parent
+    useImperativeHandle(ref, () => ({
+      play: async () => {
+        await AudioPlayer({ notes: highlightedNotes, playmode: playMode }).play();
+      },
+    }));
     return (
         <>
-            <svg width="560" height="120" xmlns="http://www.w3.org/2000/svg" onClick={handlePianoClick}>
+            <svg width="280" height="120" xmlns="http://www.w3.org/2000/svg" onClick={handlePianoClick}>
             {/* White keys */}
             <rect id="C" x="0" y="0" width="40" height="120" fill={keyFills[0]} stroke="black" />
             <rect id="D" x="40" y="0" width="40" height="120" fill={keyFills[2]} stroke="black" />
@@ -57,9 +65,19 @@ const Piano = ({ notes = [] }) => {
               highlightedNotes={highlightedNotes}
             />
           )}
-        <AudioPlayer notes={highlightedNotes} playmode={playMode}/>
+        <div className="controls">
+          <button className="btn btn-primary play-button" onClick={() => AudioPlayer({ notes: highlightedNotes, playmode: playMode }).play()}>
+            <i className="bi bi-play-fill"></i> 
+          </button>
+          <button
+              className="btn btn-secondary switch-button"
+              onClick={() => setPlayMode((prev) => !prev)}
+            >
+            <i class="bi bi-arrow-clockwise"></i> {playMode ? 'Arpeggio' : 'Chord'}
+          </button>
+        </div>
         </>
     );
-};
+});
 
 export default Piano;

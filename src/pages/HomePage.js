@@ -29,7 +29,7 @@ const HomePage = () =>{
                         aria-expanded={isOpen} 
                     aria-label="Toggle navigation"
                 >
-                    <span className="navbar-toggler-icon"></span>
+                    <i className="bi bi-list text-white fs-3"></i>
                 </button>
 
                 <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}>

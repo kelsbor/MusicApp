@@ -32,11 +32,9 @@ const WorkSpace = () =>{
             </nav>
         </header>
         <AddContainer />
-        <div className='container m-5 p-5'>
+        <div className='container mt-4 border'>
             <div className='row'>
-                <div className='col-12 border border-primary'>
-                    <PianoContainer />
-                </div>
+                <PianoContainer />
             </div>
         </div>
         </>

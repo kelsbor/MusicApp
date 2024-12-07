@@ -1,37 +1,40 @@
-import React from "react";
 const AudioPlayer = ({ notes, playmode }) => {
     const noteFiles = [
-        "c4.mp3", "c-4.mp3", "d4.mp3", "d-4.mp3", "e4.mp3",
-        "f4.mp3", "f-4.mp3", "g4.mp3", "g-4.mp3", "a4.mp3",
-        "a-4.mp3", "b4.mp3",
+      "c4.mp3", "c-4.mp3", "d4.mp3", "d-4.mp3", "e4.mp3",
+      "f4.mp3", "f-4.mp3", "g4.mp3", "g-4.mp3", "a4.mp3",
+      "a-4.mp3", "b4.mp3",
     ];
-
+  
     const playNote = (note) => {
+      return new Promise((resolve) => {
         const audio = new Audio(`/audio/piano/${noteFiles[note]}`);
+        audio.onended = resolve; // Resolve the promise when the audio ends
         audio.play();
+      });
     };
-
-    const play = () => {
-        (playmode) ? playChord() : playArpeggio();
-    }
-
-    const playChord = () => {
-        if (!notes || notes.length === 0) return;
-        notes.forEach((note) => playNote(note));
+  
+    const playChord = async () => {
+      if (!notes || notes.length === 0) return;
+      const playPromises = notes.map((note) => playNote(note));
+      await Promise.all(playPromises); // Wait for all notes in the chord to finish
     };
-
-    const playArpeggio = () => {
-        if (!notes || notes.length === 0) return;
-        notes.forEach((note, index) => {
-            setTimeout(() => playNote(note), index * 300); // 300ms between notes
-        });
+  
+    const playArpeggio = async () => {
+      if (!notes || notes.length === 0) return;
+      for (const note of notes) {
+        await playNote(note); // Play notes one at a time with a delay
+      }
     };
-
-    return (
-        <div>
-            <button className="btn btn-primary" onClick={play}><i class="bi bi-play"></i></button>
-        </div>
-    );
-};
-
-export default AudioPlayer;
+  
+    return {
+      play: async () => {
+        if (playmode) {
+          await playChord();
+        } else {
+          await playArpeggio();
+        }
+      },
+    };
+  };
+  
+  export default AudioPlayer;

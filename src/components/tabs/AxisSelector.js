@@ -63,7 +63,7 @@ const AxisSelector = ({ onSelectAxis, showTonalContext = true }) => {
     };
 
     return (
-        <svg width="400" height="400">
+        <svg width="400" height="400" >
             {/* Draw Circle */}
             <circle cx={centerX} cy={centerY} r={radius} fill="none" stroke="black" />
 
