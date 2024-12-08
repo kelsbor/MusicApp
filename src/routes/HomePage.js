@@ -74,7 +74,7 @@ const HomePage = () => {
           data-aos="fade-down"
         />
         <div className="fw-bold text-center flex-column d-flex m-5" data-aos="fade-up">
-          <p className="display-4 fw-bold highlight bg-dark text-white" style={{ borderRadius: '20px' , border: '0px'}}>BrickNotes</p>
+          <p className="display-4 fw-bold highlight bg-dark text-white" >BrickNotes</p>
           <p className="highlight bg-dark text-white">Build your sound!</p>
         </div>
         <a href="/app">

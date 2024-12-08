@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage.js';
-import WorkSpace from './pages/WorkSpace.js';
-import About from './pages/About.js';
+import HomePage from './routes/HomePage.js';
+import WorkSpace from './routes/WorkSpace.js';
+import About from './routes/About.js';
 const Router= () => {
     console.log('Rendering HomePage Component');
     return (
