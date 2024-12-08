@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import Piano from "./Piano";
-import "../styles/Piano.css";
+import "../styles/piano.css";
 
 const PianoContainer = () => {
   const [pianos, setPianos] = useState([
@@ -41,14 +41,16 @@ const PianoContainer = () => {
     for (const { ref } of pianoRefs.current) {
       if (ref && ref.play) {
         await ref.play();
+        await setTimeout(1000)
       }
     }
   };
 
   return (
     <>
-      <nav className="navbar navbar-expand-sm text-white p-3">
-        <div className="container-fluid">
+    <div className="piano-container">
+    <div className="container-fluid">
+        <nav className="navbar navbar-expand-sm text-white p-3 m-0 bg-dark">
           <button
             className="btn btn-primary m-2 add-piano-btn"
             onClick={handleAddPiano}
@@ -61,8 +63,8 @@ const PianoContainer = () => {
           >
             <i className="bi bi-play-fill"></i> Play All
           </button>
-        </div>
-      </nav>
+        </nav>
+      </div>
 
       <div className="grid-container">
         {pianos.map((piano) => (
@@ -77,6 +79,7 @@ const PianoContainer = () => {
           </div>
         ))}
       </div>
+    </div>
     </>
   );
 };

@@ -1,7 +1,7 @@
 const ChordTab = ({onChange, onSubmit, chord}) => {
     return (
         <>
-                <h2>Chord Control</h2>
+                <h2 style={{marginTop: '20px'}}>Chord Control</h2>
                 <p>Chord: {chord.chord}</p>
                 <p>Quality: {chord.quality}</p>
                 <p>Key: {chord.key}</p>
@@ -47,7 +47,7 @@ const ChordTab = ({onChange, onSubmit, chord}) => {
                     <option value="A#">A#</option>
                     <option value="B">B</option>
                 </select>
-                <button className='btn btn-primary' type="submit" onClick={onSubmit}>Generate</button>
+                <button className='btn btn-primary btn-generate' type="submit" onClick={onSubmit} style={{marginTop: '20px'}}>Generate</button>
         </>
     )
 }

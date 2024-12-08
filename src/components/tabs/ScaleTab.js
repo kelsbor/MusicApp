@@ -1,7 +1,7 @@
 const ScaleTab =({scale, onChange, onSubmit}) => {
     return (
         <>
-        <h2>Scale Control</h2>
+        <h2 style={{marginTop: '20px'}}>Scale Control</h2>
             <p>Fundamental: {scale.fundamental}</p>
             <p>Scale: {scale.scale}</p>
             <select className="form-select" name="fundamental" value={scale.fundamental} onChange={onChange}>
@@ -27,16 +27,7 @@ const ScaleTab =({scale, onChange, onSubmit}) => {
                 <option value="aeolian">Aeolian</option>
                 <option value="locrian">Locrian</option>
             </select>
-            <select className="form-select" name="scale" value={scale.scale} onChange={onChange}>
-                <option value="ionian">Ionian</option>
-                <option value="dorian">Dorian</option>
-                <option value="phrygian">Phrygian</option>
-                <option value="lydian">Lydian</option>
-                <option value="mixolydian">Mixolydian</option>
-                <option value="aeolian">Aeolian</option>
-                <option value="locrian">Locrian</option>
-            </select>
-            <button className='btn btn-primary' type="submit" onClick={onSubmit}>Generate</button>
+            <button className='btn btn-primary btn-generate' type="submit" onClick={onSubmit} style={{marginTop: '20px'}}>Generate</button>
         </>
     )    
 }

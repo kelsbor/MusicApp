@@ -73,7 +73,7 @@ const Piano = forwardRef(({ notes = [] }, ref) => {
               className="btn btn-secondary switch-button"
               onClick={() => setPlayMode((prev) => !prev)}
             >
-            <i class="bi bi-arrow-clockwise"></i> {playMode ? 'Arpeggio' : 'Chord'}
+            <i class="bi bi-arrow-clockwise"></i> {playMode ? 'Chord' : 'Arpeggio'}
           </button>
         </div>
         </>

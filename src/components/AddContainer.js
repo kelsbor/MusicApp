@@ -1,7 +1,8 @@
+import '../styles/addContainer.css'
 const AddContainer = () => {
     return (
         <>
-            <header className="bg-primary text-white p-3">
+            <header className="addContainer text-white p-3">
                 <h3>Add Container</h3>
                     <div className="row">
                         <div className="col-3">

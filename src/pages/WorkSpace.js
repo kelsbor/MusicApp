@@ -1,5 +1,4 @@
 import PianoContainer from '../components/PianoContainer.js';
-import AddContainer from '../components/AddContainer.js';
 import logo from '../images/logo.png'
 const WorkSpace = () =>{
     return (
@@ -24,14 +23,13 @@ const WorkSpace = () =>{
                             <a className="nav-link text-white" href="/app">APP</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link text-white" href="/">ABOUT</a>
+                            <a className="nav-link text-white" href="/about">ABOUT</a>
                         </li>
                     </ul>
                 </div>
             </div>
             </nav>
         </header>
-        <AddContainer />
         <div className='container mt-4 border'>
             <div className='row'>
                 <PianoContainer />

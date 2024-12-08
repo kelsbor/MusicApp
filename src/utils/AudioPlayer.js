@@ -21,8 +21,10 @@ const AudioPlayer = ({ notes, playmode }) => {
   
     const playArpeggio = async () => {
       if (!notes || notes.length === 0) return;
+    
       for (const note of notes) {
-        await playNote(note); // Play notes one at a time with a delay
+        playNote(note); // Start playing the note
+        await new Promise((resolve) => setTimeout(resolve, 150)); // Adjust the delay (200ms here)
       }
     };
   
